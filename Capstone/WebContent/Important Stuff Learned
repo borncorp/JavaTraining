@@ -1,0 +1,6 @@
+To add something to the database:
+					    stmt.execute("INSERT INTO users " + 
+					    "(username ,password) VALUES" + 
+					    "('testo',  'testo')");
+
+					    
