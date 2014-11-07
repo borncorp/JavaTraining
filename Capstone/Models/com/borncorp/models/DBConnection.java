@@ -2,8 +2,13 @@ package com.borncorp.models;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+
+import javax.sql.rowset.CachedRowSet;
+
+import com.sun.rowset.CachedRowSetImpl;
 
 public class DBConnection {
 	public void createUser(String email, String password) {
@@ -12,8 +17,7 @@ public class DBConnection {
 				try {
 					DriverManager.registerDriver(new com.mysql.jdbc.Driver ());
 					conn = DriverManager
-							.getConnection("jdbc:mysql://23.95.38.197/db?"
-									+ "user=test&password=test");
+							.getConnection(Database.connection);
 
 					// Do something with the Connection
 					
@@ -22,10 +26,11 @@ public class DBConnection {
 					try {
 					    stmt = conn.createStatement();
 					    // INSERT, UPDATE, or DELETE 
+					    
 					    stmt.execute("INSERT INTO users " + 
 					    "(username ,password) VALUES" + 
 					    "('"+ email + "',  '"+ password + "')");
-					    // Now do something with the ResultSet ....
+
 					    stmt.close();
 					}
 					catch (SQLException ex){
@@ -51,8 +56,7 @@ public class DBConnection {
 				try {
 					DriverManager.registerDriver(new com.mysql.jdbc.Driver ());
 					conn = DriverManager
-							.getConnection("jdbc:mysql://23.95.38.197/db?"
-									+ "user=test&password=test");
+							.getConnection(Database.connection);
 
 					// Do something with the Connection
 					
@@ -90,8 +94,7 @@ public class DBConnection {
 				try {
 					DriverManager.registerDriver(new com.mysql.jdbc.Driver ());
 					conn = DriverManager
-							.getConnection("jdbc:mysql://23.95.38.197/db?"
-									+ "user=test&password=test");
+							.getConnection(Database.connection);
 
 					// Do something with the Connection
 					
@@ -123,5 +126,48 @@ public class DBConnection {
 				}
 			}	
 
+	public CachedRowSet getUser(String email) {
+		// SQL STUFF
+				Connection conn = null;
+				CachedRowSet results = null;
+				try {
+					DriverManager.registerDriver(new com.mysql.jdbc.Driver ());
+					conn = DriverManager
+							.getConnection(Database.connection);
+
+					// Do something with the Connection
+					
+					Statement stmt = null;
+					ResultSet rs = null;
+					
+					try {
+					    stmt = conn.createStatement();
+					    // INSERT, UPDATE, or DELETE 
+					    
+					    rs = stmt.executeQuery("SELECT * FROM users WHERE username = " + "'" + email + "'");
+					    
+					    results = new CachedRowSetImpl();
+					    results.populate(rs);
+					    stmt.close();
+					    rs.close();
+					}
+					catch (SQLException ex){
+					    // handle any errors
+					    System.out.println("SQLException: " + ex.getMessage());
+					    System.out.println("SQLState: " + ex.getSQLState());
+					    System.out.println("VendorError: " + ex.getErrorCode());
+					    stmt.close();
+					    rs.close();
+					}			
+					
+					//end
+				} catch (SQLException ex) {
+					// handle any errors
+					System.out.println("SQLException: " + ex.getMessage());
+					System.out.println("SQLState: " + ex.getSQLState());
+					System.out.println("VendorError: " + ex.getErrorCode());
+				}
+				return results;
+			}
 }
 

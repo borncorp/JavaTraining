@@ -20,7 +20,7 @@
         <a href="#"><img src="https://developer.cdn.mozilla.net/media/img/mdn-logo-sm.png" height="35" width="35" /> </a>
         <ul class="dropdown">
           <li><a href="#">Profile</a></li>
-          <li><a href="#">Logout</a></li>
+          <li><a href="./Logout">Logout</a></li>
           <li class="active"><a href="./index.jsp">IndexJSP</a></li>
         </ul>
       </li>

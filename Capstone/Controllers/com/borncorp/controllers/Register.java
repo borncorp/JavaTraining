@@ -1,6 +1,7 @@
 package com.borncorp.controllers;
 
 import java.io.IOException;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import javax.servlet.ServletException;
@@ -18,14 +19,14 @@ import com.borncorp.models.DBConnection;
 /**
  * Servlet implementation class PostsController
  */
-@WebServlet("/Login")
-public class Login extends HttpServlet {
+@WebServlet("/Register")
+public class Register extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public Login() {
+    public Register() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -40,37 +41,25 @@ public class Login extends HttpServlet {
 		
 		CachedRowSet results = new DBConnection().getUser(email);
 		
-			try {
-				if (results.first()) {
-					System.out.println("User exists");
-
-					if (email.equals(results.getString("username")) && password.equals(results.getString("password"))) {
-						System.out.println("Logged in!");
-						request.getSession().setAttribute("isLoggedIn", true);
-						request.getRequestDispatcher("/WEB-INF/profile.jsp").forward(request,
-								response);	
-					
-					} else {
-
-						System.out.println("Wrong!");
-						request.getSession().setAttribute("isLoggedIn", false);
-						request.getRequestDispatcher("/index.jsp").forward(request,
-								response);
-					}
-				}
-				else
-				{
-					System.out.println("User doesnt exist");
-
-					
-					request.getRequestDispatcher("/register.jsp").forward(request,
-							response);
-				}
-			} catch (SQLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+		// Checks if user already exists, if not it adds the user to the DB.
+		try {
+			if (results.first()) {
+				System.out.println("User exists");
+				request.getRequestDispatcher("/usertaken.jsp").forward(request,
+						response);
 			}
+			else
+			{
+				System.out.println("User doesnt exist");
+				new DBConnection().createUser(email, password);
+				System.out.println("Logged in!");
+				request.getSession().setAttribute("loggedInUser",email);
+				
+				request.getRequestDispatcher("/WEB-INF/profile.jsp").forward(request,
+						response);
+			}
+		} catch (SQLException e1) {
+			e1.printStackTrace();
+		}
 	}
 }
-
-

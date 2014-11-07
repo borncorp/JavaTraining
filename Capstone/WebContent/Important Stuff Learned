@@ -4,3 +4,22 @@ To add something to the database:
 					    "('testo',  'testo')");
 
 					    
+Its null on results:
+
+		try {
+			if (results.first()) {
+				System.out.println("its not null");
+			}
+			else
+			{
+				System.out.println("its null");
+				
+			}
+		} catch (SQLException e1) {
+			e1.printStackTrace();
+		}
+
+		
+Get something from db
+
+results.getString("password")

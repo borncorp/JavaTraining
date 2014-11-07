@@ -1,12 +1,10 @@
 <%@ include file="/WEB-INF/Layout/topcrap.jsp"%>
-<title>Done</title>
+<title>User Taken</title>
 </head>
 <body>
-	<%@ include file="/WEB-INF/Layout/topbar.jsp"%>
 
-	<h2>You are Done</h2>
-
-<%@ include file="/WEB-INF/Layout/footer.jsp"%>
+	<h2>User taken, go back</h2>
+	
 	
 	<script src="js/vendor/jquery.js"></script>
 	<script src="js/foundation.min.js"></script>

@@ -1,10 +1,11 @@
 <%@ include file="/WEB-INF/Layout/topcrap.jsp"%>
-<title>Done</title>
+<title>Logout</title>
 </head>
 <body>
-	<%@ include file="/WEB-INF/Layout/topbar.jsp"%>
 
-	<h2>You are Done</h2>
+	<h2>You are logged out</h2>
+	
+    <h2><a href="./index.jsp">Home</a></h1>
 
 <%@ include file="/WEB-INF/Layout/footer.jsp"%>
 	
