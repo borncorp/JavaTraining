@@ -55,6 +55,7 @@ public class Register extends HttpServlet {
 				System.out.println("Logged in!");
 				request.getSession().setAttribute("loggedInUser",email);
 				
+				
 				request.getRequestDispatcher("/WEB-INF/profile.jsp").forward(request,
 						response);
 			}

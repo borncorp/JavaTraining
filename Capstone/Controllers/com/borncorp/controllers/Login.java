@@ -39,21 +39,21 @@ public class Login extends HttpServlet {
 		String password = Jsoup.clean(request.getParameter("password"), Whitelist.none());
 		
 		CachedRowSet results = new DBConnection().getUser(email);
-		
-			try {
+
+		try {
 				if (results.first()) {
 					System.out.println("User exists");
 
 					if (email.equals(results.getString("username")) && password.equals(results.getString("password"))) {
 						System.out.println("Logged in!");
-						request.getSession().setAttribute("isLoggedIn", true);
+						request.getSession().setAttribute("isLoggedIn", email);
 						request.getRequestDispatcher("/WEB-INF/profile.jsp").forward(request,
 								response);	
 					
 					} else {
 
 						System.out.println("Wrong!");
-						request.getSession().setAttribute("isLoggedIn", false);
+						request.getSession().setAttribute("isLoggedIn", null);
 						request.getRequestDispatcher("/index.jsp").forward(request,
 								response);
 					}
@@ -67,7 +67,6 @@ public class Login extends HttpServlet {
 							response);
 				}
 			} catch (SQLException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 	}

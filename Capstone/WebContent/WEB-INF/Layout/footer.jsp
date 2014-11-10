@@ -1,4 +1,4 @@
-<c:if test="${sessionScope.isLoggedIn == true}">
+<c:if test="${sessionScope.isLoggedIn != null}">
 	You are logged In </br>
 </c:if>
 
