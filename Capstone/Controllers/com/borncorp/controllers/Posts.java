@@ -50,7 +50,7 @@ public class Posts extends HttpServlet {
 //		System.out.println(tester);
 		CachedRowSet posts= new DBConnection().getPosts(10);
 		
-		ArrayList<Post> allposts = new ArrayList<Post>();
+		ArrayList<Post> allposts = new ArrayList<>();
 		
 		try {
 			while(posts.next()){
@@ -66,12 +66,7 @@ public class Posts extends HttpServlet {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-
-		for (Post post : allposts) {
-			System.out.println(post.content);
-		}
-		
-		
+	
 	    request.setAttribute("allposts", allposts);
 	    RequestDispatcher rd = getServletContext()
 	                               .getRequestDispatcher("/WEB-INF/posts.jsp");

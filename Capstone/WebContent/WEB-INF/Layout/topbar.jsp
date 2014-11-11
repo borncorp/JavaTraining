@@ -10,18 +10,17 @@
   <section class="top-bar-section">
       <!-- Left Nav Section -->
     <ul class="left">
-      <li><a href="./index.jsp">Stuff</a></li>
+      <li><a href="./Posts">Stuff</a></li>
     </ul>
 
     <!-- Right Nav Section -->
     <ul class="right">
-      <li class="active"><a href="#">Right Button Active</a></li>
+      <li class="active"><a href="#">New Post</a></li>
       <li class="has-dropdown">
         <a href="#"><img src="https://developer.cdn.mozilla.net/media/img/mdn-logo-sm.png" height="35" width="35" /> </a>
         <ul class="dropdown">
-          <li><a href="#">Profile</a></li>
+          <li><a href="./WEB-INF/profile.jsp">Profile</a></li>
           <li><a href="./Logout">Logout</a></li>
-          <li class="active"><a href="./index.jsp">IndexJSP</a></li>
         </ul>
       </li>
     </ul>

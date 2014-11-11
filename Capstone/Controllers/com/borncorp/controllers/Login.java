@@ -47,6 +47,9 @@ public class Login extends HttpServlet {
 					if (email.equals(results.getString("username")) && password.equals(results.getString("password"))) {
 						System.out.println("Logged in!");
 						request.getSession().setAttribute("isLoggedIn", email);
+						if(results.getBoolean("isadmin")==true){
+							request.getSession().setAttribute("isadmin", true);
+						}
 						request.getRequestDispatcher("/WEB-INF/profile.jsp").forward(request,
 								response);	
 					
