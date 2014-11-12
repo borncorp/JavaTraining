@@ -36,10 +36,10 @@ public class Register extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
-		String email = Jsoup.clean(request.getParameter("email"), Whitelist.none()).toLowerCase();
+		String username = Jsoup.clean(request.getParameter("username"), Whitelist.none()).toLowerCase();
 		String password = Jsoup.clean(request.getParameter("password"), Whitelist.none());
 		
-		CachedRowSet results = new DBConnection().getUser(email);
+		CachedRowSet results = new DBConnection().getUser(username);
 		
 		// Checks if user already exists, if not it adds the user to the DB.
 		try {
@@ -51,12 +51,12 @@ public class Register extends HttpServlet {
 			else
 			{
 				System.out.println("User doesnt exist");
-				new DBConnection().createUser(email, password);
+				new DBConnection().createUser(username, password);
 				System.out.println("Logged in!");
-				request.getSession().setAttribute("loggedInUser",email);
+				request.getSession().setAttribute("loggedInUser",username);
 				
 				
-				request.getRequestDispatcher("/WEB-INF/profile.jsp").forward(request,
+				request.getRequestDispatcher("/login.jsp").forward(request,
 						response);
 			}
 		} catch (SQLException e1) {

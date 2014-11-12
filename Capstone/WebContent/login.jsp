@@ -1,44 +1,40 @@
 <%@ include file="/WEB-INF/Layout/topcrap.jsp"%>
+<!-- <script type="text/javascript" src="http://code.jquery.com/jquery-1.4.4.min.js"></script> -->
+<script type="text/javascript" src="formly/formly.min.js"></script>
+<link rel="stylesheet" href="formly/formly.min.css" type="text/css" />
+
+
 <title>Login</title>
 </head>
 <body>
-
-	<h2>Login</h2>
 	<form action="Login" method="post" data-abide>
-		<table style="width: 90%; margin-left: auto; margin-right: auto;">
-			<tbody>
-				<tr>
-					<td>
-						<div class="small-9 columns">
-							<label>Email <small>required</small> <input name="email" type="email"
-								id="email"></label> <small class="error">Your email is
-								invalid</small>
-						</div>
-					</td>
-					<td>&nbsp;</td>
-				</tr>
-				<tr>
-					<td>
-						<div class="small-9 columns">
-							<label>Password <small>required</small> <input
-								name="password" type="password" id="password" required pattern="[a-zA-Z]+"></label>
-							<small class="error">Your password must match the
-								requirements</small>
-						</div>
-					</td>
-				</tr>
-			</tbody>
-		</table>
+	 <fieldset>
+	 <legend>Login</legend>
+						
+<form data-abide>
+  <div class="name-field">
+    <label>Username <small>required</small>
+      <input type="text" name="username"  pattern="alpha_numeric" required>
+    </label>
+    <small class="error">Username is required and must be a string.</small>
+  </div>
+  <div class="password-field">
+    <label>Password <small>required</small>
+      <input type="password"  name="password" required >
+    </label>
+    <small class="error">Your password must match the requirements.</small>
+  </div>
+  <button type="submit">Submit</button>
+</form>
+  </fieldset>
 
-		<button type="submit">Submit</button>
-	</form>
 
 <%@ include file="/WEB-INF/Layout/footer.jsp"%>
 
 	<script src="js/vendor/jquery.js"></script>
 	<script src="js/foundation.min.js"></script>
 	<script>
-      $(document).foundation();
+       $(document).foundation();
     </script>
 </body>
 </html>

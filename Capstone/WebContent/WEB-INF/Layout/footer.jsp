@@ -1,5 +1,5 @@
 <c:if test="${sessionScope.isLoggedIn != null}">
-	You are logged In </br>
+	 </br>You are logged In </br>
 </c:if>
 
 <c:if test="${sessionScope.isadmin == true}">

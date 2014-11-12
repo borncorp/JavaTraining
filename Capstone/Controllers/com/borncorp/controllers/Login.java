@@ -35,18 +35,18 @@ public class Login extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
-		String email = Jsoup.clean(request.getParameter("email"), Whitelist.none()).toLowerCase();
+		String username = Jsoup.clean(request.getParameter("username"), Whitelist.none()).toLowerCase();
 		String password = Jsoup.clean(request.getParameter("password"), Whitelist.none());
 		
-		CachedRowSet results = new DBConnection().getUser(email);
+		CachedRowSet results = new DBConnection().getUser(username);
 
 		try {
 				if (results.first()) {
 					System.out.println("User exists");
 
-					if (email.equals(results.getString("username")) && password.equals(results.getString("password"))) {
+					if (username.equals(results.getString("username")) && password.equals(results.getString("password"))) {
 						System.out.println("Logged in!");
-						request.getSession().setAttribute("isLoggedIn", email);
+						request.getSession().setAttribute("isLoggedIn", username);
 						if(results.getBoolean("isadmin")==true){
 							request.getSession().setAttribute("isadmin", true);
 						}

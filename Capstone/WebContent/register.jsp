@@ -2,44 +2,31 @@
 <title>Register</title>
 </head>
 <body>
-
-	<h2>Register</h2>
 	<form action="Register" method="post" data-abide>
-		<table style="width: 90%; margin-left: auto; margin-right: auto;">
-			<tbody>
-				<tr>
-					<td>
-						<div class="small-9 columns">
-							<label>Email <small>required</small> <input name="email" type="email"
-								id="email"></label> <small class="error">Your email is
-								invalid</small>
-						</div>
-					</td>
-					<td>&nbsp;</td>
-				</tr>
-				<tr>
-					<td>
-						<div class="small-9 columns">
-							<label>Password <small>required</small> <input
-								name="password" type="password" id="password" required pattern="[a-zA-Z]+"></label>
-							<small class="error">Your password must match the
-								requirements</small>
-						</div>
-					</td>
-					<td>
-						<div class="small-9 columns">
-							<label>Confirm Password <small>required</small> <input
-								type="password" required pattern="[a-zA-Z]+"
-								data-equalto="password"></label> <small class="error">The
-								password did not match</small>
-						</div>
-					</td>
-				</tr>
-			</tbody>
-		</table>
+	 <fieldset>
+	 <legend>Register</legend>
+						
+  <div class="name-field">
+    <label>Username <small>required</small>
+      <input type="text" name="username"  pattern="alpha_numeric" required>
+    </label>
+    <small class="error">Username is required and must be a string.</small>
+  </div>
+  <div class="password-field">
+    <label>Password <small>required</small>
+      <input type="password"  name="password" required >
+    </label>
+    <small class="error">Your password must match the requirements.</small>
+  </div>
+  <div class="password-field">
+	<label>Confirm Password <small>required</small> 
+		<input type="password" data-equalto="password" required>
+	</label> <small class="error">The password did not match</small>
+  </div>
 
-		<button type="submit">Submit</button>
-	</form>
+  <button type="submit">Submit</button>
+  </fieldset>
+</form>
 
 	<script src="js/vendor/jquery.js"></script>
 	<script src="js/foundation.min.js"></script>
