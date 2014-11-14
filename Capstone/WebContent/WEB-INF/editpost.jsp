@@ -6,6 +6,11 @@
 	<%@ include file="/WEB-INF/Layout/topbar.jsp"%>
 
 	<h2>Edit Post</h2>
+	
+<form name="submitForm" method="POST" action="./DeletePost">
+<input type="hidden" name="postid" value="${postid}">
+<input type="submit" value="Delete">
+</form>
 
 <form action="EditPost" method="post" >
 <div id="simple-editor">
