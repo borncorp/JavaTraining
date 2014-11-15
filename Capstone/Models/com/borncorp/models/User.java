@@ -1,48 +1,40 @@
 package com.borncorp.models;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.io.Serializable;
 
-public class User {
-	public void create(String email, String password) {
-		
-		// SQL STUFF
-				Connection conn = null;
-				try {
-					DriverManager.registerDriver(new com.mysql.jdbc.Driver ());
-					conn = DriverManager
-							.getConnection(Database.connection);
+public class User implements Serializable {
 
-					// Do something with the Connection
-					
-					Statement stmt = null;
-					
-					try {
-					    stmt = conn.createStatement();
-					    // INSERT, UPDATE, or DELETE 
-					    
-					    stmt.execute("INSERT INTO users " + 
-					    "(username ,password) VALUES" + 
-					    "('"+ email + "',  '"+ password + "')");
-
-					    stmt.close();
-					}
-					catch (SQLException ex){
-					    // handle any errors
-					    System.out.println("SQLException: " + ex.getMessage());
-					    System.out.println("SQLState: " + ex.getSQLState());
-					    System.out.println("VendorError: " + ex.getErrorCode());
-					    stmt.close();
-					}			
-					
-					//end
-				} catch (SQLException ex) {
-					// handle any errors
-					System.out.println("SQLException: " + ex.getMessage());
-					System.out.println("SQLState: " + ex.getSQLState());
-					System.out.println("VendorError: " + ex.getErrorCode());
-				}
-			}
+	private static final long serialVersionUID = 1L;
+	private int userid;
+	private String username;
+	private String password;
+	private boolean isadmin;
+	
+	public int getUserid() {
+		return userid;
+	}
+	public void setUserid(int userid) {
+		this.userid = userid;
+	}
+	public String getUsername() {
+		return username;
+	}
+	public void setUsername(String username) {
+		this.username = username;
+	}
+	public String getPassword() {
+		return password;
+	}
+	public void setPassword(String password) {
+		this.password = password;
+	}
+	public boolean isIsadmin() {
+		return isadmin;
+	}
+	public void setIsadmin(boolean isadmin) {
+		this.isadmin = isadmin;
+	}
+	
+	
+	
 }

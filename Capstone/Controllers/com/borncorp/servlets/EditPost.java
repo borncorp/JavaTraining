@@ -16,8 +16,9 @@ import javax.sql.rowset.CachedRowSet;
 import org.jsoup.Jsoup;
 import org.jsoup.safety.Whitelist;
 
-import com.borncorp.controllers.Post;
+import com.borncorp.dao.PostDAO;
 import com.borncorp.models.DBConnection;
+import com.borncorp.models.Post;
 
 /**
  * Servlet implementation class EditPost
@@ -37,10 +38,16 @@ public class EditPost extends HttpServlet {
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
+	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 
-		CachedRowSet results = new DBConnection().getPost(Integer.parseInt(request.getParameter("postid")));
+		Post post = new Post();
+		post.setPostid(Integer.parseInt(request.getParameter("postid")));
+		
+		new PostDAO().createPost(post);
+		
+		CachedRowSet results = new PostDAO().getPost(post);
 		
 		ArrayList<Post> myPost = new ArrayList<>();
 		
@@ -69,12 +76,17 @@ public class EditPost extends HttpServlet {
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
+	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		String content = Jsoup.clean(request.getParameter("simple-editor"), Whitelist.basicWithImages());
 		int postid = Integer.parseInt(request.getParameter("postid"));
 		
-		new DBConnection().updatePost(postid, content);
+		Post post = new Post();
+		post.setPostid(postid);
+		post.setContent(content);
+		
+		new PostDAO().updatePost(post);
 		response.sendRedirect("./Posts");
 	}
 

@@ -1,4 +1,4 @@
-package com.borncorp.controllers;
+package com.borncorp.servlets;
 
 import java.io.IOException;
 import javax.servlet.ServletException;
@@ -25,6 +25,7 @@ public class Logout extends HttpServlet {
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
+	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.getSession().setAttribute("isLoggedIn", null);
 		request.getSession().setAttribute("isadmin", false);

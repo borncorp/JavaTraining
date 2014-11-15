@@ -1,20 +1,16 @@
-package com.borncorp.controllers;
+package com.borncorp.servlets;
 
 import java.io.IOException;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.sql.rowset.CachedRowSet;
-
 import org.jsoup.Jsoup;
 import org.jsoup.safety.Whitelist;
 
-import com.borncorp.models.DBConnection;
+import com.borncorp.dao.UserDAO;
+import com.borncorp.models.User;
 
 /**
  * Servlet implementation class PostsController
@@ -34,33 +30,40 @@ public class Register extends HttpServlet {
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
+	@Override
 	protected void doPost(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
 		String username = Jsoup.clean(request.getParameter("username"), Whitelist.none()).toLowerCase();
 		String password = Jsoup.clean(request.getParameter("password"), Whitelist.none());
 		
-		CachedRowSet results = new DBConnection().getUser(username);
+		User user= new User();
+		user.setUsername(username);
+		user.setPassword(password);
 		
-		// Checks if user already exists, if not it adds the user to the DB.
-		try {
-			if (results.first()) {
-				System.out.println("User exists");
+		int code = new UserDAO().doRegister(user);
+		
+		//Code 1 = Login succesful
+		//Code -1 = User taken
+		//Code -2 = Unknown error
+		
+		if (code>0){
+			new UserDAO().createUser(user);
+			request.getRequestDispatcher("/login.jsp").forward(request,
+					response);
+		}
+
+		if (code<0){
+			request.getSession().setAttribute("isLoggedIn", null);
+			if (code== -1){
+				System.out.println("User exists, cant register");
 				request.getRequestDispatcher("/usertaken.jsp").forward(request,
 						response);
 			}
-			else
-			{
-				System.out.println("User doesnt exist");
-				new DBConnection().createUser(username, password);
-				System.out.println("Logged in!");
-				request.getSession().setAttribute("loggedInUser",username);
-				
-				
-				request.getRequestDispatcher("/login.jsp").forward(request,
+			if (code== -2){
+				System.out.println("Unknown error");
+				request.getRequestDispatcher("/index.jsp").forward(request,
 						response);
 			}
-		} catch (SQLException e1) {
-			e1.printStackTrace();
 		}
 	}
 }

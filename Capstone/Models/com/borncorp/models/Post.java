@@ -1,13 +1,15 @@
-package com.borncorp.controllers;
+package com.borncorp.models;
 
+import java.io.Serializable;
 import java.sql.Timestamp;
 
-public class Post {
+public class Post implements Serializable{
 
-	int postid;
-	String username;
-	String content;
-	Timestamp date;
+	private static final long serialVersionUID = 1L;
+	private int postid;
+	private String username;
+	private String content;
+	private Timestamp date;
 
 	public int getPostid() {
 		return postid;
@@ -41,12 +43,7 @@ public class Post {
 		this.date = date;
 	}
 
-	public Post(int postid, String username, String content, Timestamp date) {
-		// TODO Auto-generated constructor stub
-		this.postid = postid;
-		this.username = username;
-		this.content = content;
-		this.date = date;
+	public Post() {
 	}
 
 }
