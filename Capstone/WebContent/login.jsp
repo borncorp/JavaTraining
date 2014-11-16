@@ -27,7 +27,7 @@
   <button type="submit">Submit</button>
 </form>
   </fieldset>
-
+<%@ include file="/WEB-INF/Layout/loginform.jsp"%>
 
 <%@ include file="/WEB-INF/Layout/footer.jsp"%>
 

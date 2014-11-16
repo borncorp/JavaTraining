@@ -1,39 +1,62 @@
 <%@ include file="/WEB-INF/Layout/topcrap.jsp"%>
-<link rel="stylesheet" href="bower_components/dist/ui/trumbowyg.min.css">
-<title>Edit Post</title>
+<title>Index</title>
 </head>
 <body>
-	<%@ include file="/WEB-INF/Layout/topbar.jsp"%>
 
-	<h2>Edit Post</h2>
-	
-<form name="submitForm" method="POST" action="./DeletePost">
-<input type="hidden" name="postid" value="${postid}">
-<input type="submit" value="Delete">
-</form>
+	<div class="container">
+		<div class="row clearfix">
+			<div class="col-md-12 column">
+				<%@ include file="/WEB-INF/Layout/carousel.jsp"%>
+				<br>
+				<div class="row clearfix">
+					<div class="col-md-9 column">
+						<div class="row clearfix">
+							<div id="edittext" class="col-md-12 column">
+								<form action="EditPost" method="post">
+									<textarea rows="10" name="simple-editor" style="width: 100%;">
+											<c:forEach items="${myPost}" var="post">
+											${post.content}
+											</c:forEach>
+											</textarea>
+							</div>
+						</div>
+					<br>
+					<div class="row clearfix">
+						<div class="col-md-3 column">
+							 	<input type="hidden" name="postid" value="${postid}">
+								<button type="submit" class="btn btn-primary">Submit</button>
+								</form>
+						</div>
+						<div class="col-md-6 column">
+						</div>
+						<div class="col-md-3 column">
+							 	<form name="DeletePost" method="POST" action="./DeletePost">
+								<input type="hidden" name="postid" value="${postid}">
+								<button type="submit" class="btn btn-danger">Delete</button>
+								</form>
+						</div>
+					</div>
 
-<form action="EditPost" method="post" >
-<div id="simple-editor">
-<c:forEach items="${myPost}" var="post">
-${post.content}
-</c:forEach>
+					</div>
+							<%@ include file="/WEB-INF/Layout/loginform.jsp"%>
+					</div>
 
-</div>
+					<%@ include file="/WEB-INF/Layout/footer.jsp"%>
 
-<input type="hidden" name="postid" value="${postid}">
-<button type="submit">Submit</button>
- </form>
-
-<%@ include file="/WEB-INF/Layout/footer.jsp"%>
-
-	<script src="js/vendor/jquery.js"></script>
-	<script src="js/foundation.min.js"></script>
-	<script src="bower_components/dist/trumbowyg.min.js"></script>
-	<script>
-      $(document).foundation();
-	</script>
-	<script>
-		$('#simple-editor').trumbowyg();
-	</script>
+					<script src="js/vendor/jquery.js"></script>
+					<script type="text/javascript"
+						src="http://js.nicedit.com/nicEdit-latest.js"></script>
+					<script type="text/javascript">
+					//<![CDATA[
+					bkLib.onDomLoaded(function() {
+						nicEditors.allTextAreas({
+							buttonList : [ 'bold', 'italic', 'underline', 'ol',
+									'ul', 'strikethrough', 'removeformat',
+									'hr', 'removeformat', 'image', 'upload',
+									'link', 'unlink' ]
+						})
+					});
+					//]]>
+				</script>
 </body>
 </html>

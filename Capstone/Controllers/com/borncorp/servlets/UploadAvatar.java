@@ -55,7 +55,7 @@ public class UploadAvatar extends HttpServlet {
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		String username = request.getSession().getAttribute("isLoggedIn").toString();
+		String username = request.getSession().getAttribute("isloggedin").toString();
 		
 		        InputStream avatar = null; // input stream of the upload file
 		         

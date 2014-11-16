@@ -58,7 +58,13 @@ public class EditPost extends HttpServlet {
 				String content = results.getString("content");
 				Timestamp date = results.getTimestamp("date");
 			
-				Post aPost = new Post(postid, username, content, date);
+				Post aPost = new Post();
+				
+				aPost.setContent(content);
+				aPost.setUsername(username);
+				aPost.setPostid(postid);
+				aPost.setDate(date);
+				
 				myPost.add(aPost);			
 			}
 		} catch (SQLException e) {

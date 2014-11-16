@@ -47,7 +47,7 @@ public class Posts extends HttpServlet {
 	
 	    request.setAttribute("allposts", allposts);
 	    RequestDispatcher rd = getServletContext()
-	                               .getRequestDispatcher("/WEB-INF/posts.jsp");
+	                               .getRequestDispatcher("/index.jsp");
 	    rd.forward(request, response);
 	}
 }

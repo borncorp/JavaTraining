@@ -53,7 +53,7 @@ public class Register extends HttpServlet {
 		}
 
 		if (code<0){
-			request.getSession().setAttribute("isLoggedIn", null);
+			request.getSession().setAttribute("isloggedin", null);
 			if (code== -1){
 				System.out.println("User exists, cant register");
 				request.getRequestDispatcher("/usertaken.jsp").forward(request,

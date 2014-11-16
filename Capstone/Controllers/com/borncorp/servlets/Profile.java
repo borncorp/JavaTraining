@@ -30,7 +30,7 @@ public class Profile extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		
-		String username = request.getSession().getAttribute("isLoggedIn").toString();
+		String username = request.getSession().getAttribute("isloggedin").toString();
 
 		
 		request.getRequestDispatcher("/WEB-INF/profile.jsp").forward(request, response);

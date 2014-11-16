@@ -1,5 +1,4 @@
 <%@ include file="/WEB-INF/Layout/topcrap.jsp"%>
-<link rel="stylesheet" href="bower_components/dist/ui/trumbowyg.min.css">
 <title>New Post</title>
 </head>
 <body>
@@ -8,9 +7,8 @@
 	<h2>New Post</h2>
 
 <form action="NewPost" method="post" >
-<div id="simple-editor">
-
-</div>
+<textarea name="simple-editor" style="width: 90%;">
+</textarea>
 <button type="submit">Submit</button>
  </form>
 
@@ -18,12 +16,15 @@
 
 	<script src="js/vendor/jquery.js"></script>
 	<script src="js/foundation.min.js"></script>
-	<script src="bower_components/dist/trumbowyg.min.js"></script>
 	<script>
       $(document).foundation();
 	</script>
-	<script>
-		$('#simple-editor').trumbowyg();
-	</script>
+	
+	<script type="text/javascript" src="http://js.nicedit.com/nicEdit-latest.js"></script>
+	<script type="text/javascript">
+	//<![CDATA[
+    bkLib.onDomLoaded(function() { nicEditors.allTextAreas({buttonList : ['bold','italic','underline','ol','ul','strikethrough','removeformat','hr','removeformat','image','upload','link','unlink']}) });
+//]]>
+</script>
 </body>
 </html>

@@ -1,11 +1,13 @@
 package com.borncorp.servlets;
 
 import java.io.IOException;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
 import org.jsoup.Jsoup;
 import org.jsoup.safety.Whitelist;
 
@@ -52,7 +54,7 @@ public class Login extends HttpServlet {
 		
 		if (code>0){
 				System.out.println("Logged in!");
-				request.getSession().setAttribute("isLoggedIn", username);
+				request.getSession().setAttribute("isloggedin", username);
 			
 			if (code==2){
 				System.out.println("Admin Logged in!");
@@ -73,8 +75,7 @@ public class Login extends HttpServlet {
 				System.out.println("Unknown error");
 			}
 				request.getSession().setAttribute("isLoggedIn", null);
-				request.getRequestDispatcher("/index.jsp").forward(request,
-						response);
+				response.sendRedirect("./Posts");
 		}
 }
 }

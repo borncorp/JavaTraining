@@ -44,7 +44,7 @@ public class NewPost extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
 		String content = Jsoup.clean(request.getParameter("simple-editor"), Whitelist.basicWithImages());
-		String username = request.getSession().getAttribute("isLoggedIn").toString();
+		String username = request.getSession().getAttribute("isloggedin").toString();
 		
 		Post post = new Post();
 		post.setUsername(username);
