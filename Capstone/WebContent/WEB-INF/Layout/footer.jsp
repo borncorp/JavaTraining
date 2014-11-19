@@ -21,7 +21,9 @@
 						<div class="col-md-12 column">
 							<img alt="140x140" src="https://lh6.googleusercontent.com/-Ti-gXA5xBlE/AAAAAAAAAAI/AAAAAAAAGDA/T2u-CXWxsbU/s120-c/photo.jpg" class="img-circle">
 						</div>
-					</div> <address> <strong>Adolfo Garza.</strong><a href="mailto:adolfo.garza@g.austincc.edu"><br> adolfo.garza@g.austincc.edu <br></a></a><abbr title="Phone">P:</abbr> (956) 242-0620</address>
+					</div> <address><strong>Adolfo Garza.</strong><a href="mailto:adolfo.garza@g.austincc.edu"><br> adolfo.garza@g.austincc.edu</a></a>
+					<a href="https://github.com/borncorp/JavaTraining/tree/master/Capstone"><br> See the code on Github <br></a></a>
+					<abbr title="Phone">Phone:</abbr> (956) 242-0620</address>
 				</div>
 			</div>
 		</div>
