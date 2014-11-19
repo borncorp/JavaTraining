@@ -29,7 +29,7 @@ public class Logout extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.getSession().setAttribute("isloggedin", null);
 		request.getSession().setAttribute("isadmin", false);
-		request.getRequestDispatcher("/logout.jsp").forward(request, response);	
+		response.sendRedirect("./Posts");
 	}
 
 }

@@ -1,47 +1,37 @@
 			<div class="row clearfix">
 				<div class="col-md-4 column">
 					<h2>
-						Heading
+						What is this?
 					</h2>
 					<p>
-						Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui.
-					</p>
-					<p>
-						<a class="btn" href="#">View details »</a>
+					This is a blog system. Guests can view the posts. Registered users can make new posts. Admins can delete and edit existing posts.
 					</p>
 				</div>
 				<div class="col-md-4 column">
 					<h2>
-						Heading
+						Who am I?
 					</h2>
 					<p>
-						Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui.
-					</p>
-					<p>
-						<a class="btn" href="#">View details »</a>
+						I am a very resourceful person, I love anything related to computers and love learning new things. So far I have knowledge of HTML, CSS, Java,
+ 					C++, and I am the owner of an online gaming community of hundreds of players all around the world. I have a couple of dedicated servers I manage on my own.
 					</p>
 				</div>
 				<div class="col-md-4 column">
 					<div class="row clearfix">
 						<div class="col-md-12 column">
-							<img alt="140x140" src="http://lorempixel.com/140/140/" class="img-circle">
+							<img alt="140x140" src="https://lh6.googleusercontent.com/-Ti-gXA5xBlE/AAAAAAAAAAI/AAAAAAAAGDA/T2u-CXWxsbU/s120-c/photo.jpg" class="img-circle">
 						</div>
-					</div> <address> <strong>Twitter, Inc.</strong><br> 795 Folsom Ave, Suite 600<br> San Francisco, CA 94107<br> <abbr title="Phone">P:</abbr> (123) 456-7890</address>
+					</div> <address> <strong>Adolfo Garza.</strong><a href="mailto:adolfo.garza@g.austincc.edu"><br> adolfo.garza@g.austincc.edu <br></a></a><abbr title="Phone">P:</abbr> (956) 242-0620</address>
 				</div>
 			</div>
 		</div>
 	</div>
 </div>
 
-<c:if test="${sessionScope.isloggedin != null}">
-	 </br>You are logged In </br>
-</c:if>
-
-<c:if test="${sessionScope.isadmin == true}">
-You are Admin </br>
-</c:if>
-
-<strong>Copyright Born 2014 </strong>
-
 <!-- Latest compiled and minified JavaScript -->
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+
+<script type="text/javascript" src="js/bootstrap.min.js"></script>
+<script type="text/javascript" src="js/scripts.js"></script>
+<!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+<script src="http://getbootstrap.com/assets/js/ie10-viewport-bug-workaround.js"></script>

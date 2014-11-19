@@ -38,6 +38,14 @@ public class DeletePost extends HttpServlet {
 	 */
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+		boolean isadmin=(boolean) request.getSession().getAttribute("isadmin");
+		
+		if (isadmin != true) {
+			response.sendRedirect("./Posts");
+		}
+		else{
+		
 		int postid = Integer.parseInt(request.getParameter("postid"));
 		
 		Post post = new Post();
@@ -45,6 +53,7 @@ public class DeletePost extends HttpServlet {
 		
 		new PostDAO().deletePost(post);
 		response.sendRedirect("./Posts");
+		}
 	}
 
 }

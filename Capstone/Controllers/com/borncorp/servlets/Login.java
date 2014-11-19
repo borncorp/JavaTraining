@@ -60,8 +60,7 @@ public class Login extends HttpServlet {
 				System.out.println("Admin Logged in!");
 				request.getSession().setAttribute("isadmin", true);
 			}
-			request.getRequestDispatcher("/WEB-INF/profile.jsp").forward(request,
-					response);
+			response.sendRedirect("./Posts");
 		}
 
 		if (code<0){

@@ -47,9 +47,8 @@ public class Register extends HttpServlet {
 		//Code -2 = Unknown error
 		
 		if (code>0){
-			new UserDAO().createUser(user);
-			request.getRequestDispatcher("/login.jsp").forward(request,
-					response);
+			request.getSession().setAttribute("isloggedin", username);
+			response.sendRedirect("./Posts");
 		}
 
 		if (code<0){
@@ -61,8 +60,7 @@ public class Register extends HttpServlet {
 			}
 			if (code== -2){
 				System.out.println("Unknown error");
-				request.getRequestDispatcher("/index.jsp").forward(request,
-						response);
+				response.sendRedirect("./Posts");
 			}
 		}
 	}

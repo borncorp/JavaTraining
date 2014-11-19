@@ -42,41 +42,23 @@ public class EditPost extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 
+		boolean isadmin=(boolean) request.getSession().getAttribute("isadmin");
+		
+		if (isadmin != true) {
+			response.sendRedirect("./Posts");
+		}
+		else{
 		Post post = new Post();
 		post.setPostid(Integer.parseInt(request.getParameter("postid")));
 		
-		new PostDAO().createPost(post);
+		post = new PostDAO().getPost(post);
 		
-		CachedRowSet results = new PostDAO().getPost(post);
 		
-		ArrayList<Post> myPost = new ArrayList<>();
-		
-		try {
-			while(results.next()){
-				int postid = results.getInt("postid");
-				String username = results.getString("username");
-				String content = results.getString("content");
-				Timestamp date = results.getTimestamp("date");
-			
-				Post aPost = new Post();
-				
-				aPost.setContent(content);
-				aPost.setUsername(username);
-				aPost.setPostid(postid);
-				aPost.setDate(date);
-				
-				myPost.add(aPost);			
-			}
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
-	    request.setAttribute("myPost", myPost);
-	    request.setAttribute("postid", myPost.get(0).getPostid());
+	    request.setAttribute("post", post);
 	    RequestDispatcher rd = getServletContext()
 	                               .getRequestDispatcher("/WEB-INF/editpost.jsp");
 	    rd.forward(request, response);
+		}
 	}
 
 	/**
@@ -85,15 +67,24 @@ public class EditPost extends HttpServlet {
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		String content = Jsoup.clean(request.getParameter("simple-editor"), Whitelist.basicWithImages());
+		boolean isadmin=(boolean) request.getSession().getAttribute("isadmin");
+		
+		if (isadmin != true) {
+			response.sendRedirect("./Posts");
+		}
+		else {
+		String title = Jsoup.clean(request.getParameter("title"), Whitelist.basicWithImages());
+		String content = Jsoup.clean(request.getParameter("simple-editor"), Whitelist.none());
 		int postid = Integer.parseInt(request.getParameter("postid"));
 		
 		Post post = new Post();
 		post.setPostid(postid);
+		post.setTitle(title);
 		post.setContent(content);
 		
 		new PostDAO().updatePost(post);
 		response.sendRedirect("./Posts");
+		}
 	}
 
 }

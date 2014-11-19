@@ -2,12 +2,14 @@ package com.borncorp.servlets;
 
 import java.io.IOException;
 import java.util.ArrayList;
+
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
 import com.borncorp.dao.PostDAO;
 import com.borncorp.models.Post;
 
@@ -43,11 +45,32 @@ public class Posts extends HttpServlet {
 //		
 //		System.out.println(tester);
 		
-		ArrayList<Post> allposts = new PostDAO().getPosts(10);
+		int currentpage = 0;
+		int pagenumber = 0;
+		int howmany = 10;
+		int offset = 0;
+		
+
+		
+		if (request.getParameter("currentpage")!=null) {
+			if (request.getParameter("pagenumber") != null) {
+				pagenumber = Integer.parseInt(request.getParameter("pagenumber"));
+				currentpage = Integer.parseInt(request.getParameter("currentpage"));
+			}
+		}
+		
+		offset = currentpage * howmany;
+				
+		if (pagenumber*howmany>offset){
+			offset = pagenumber*howmany;			
+		}
+		
+		ArrayList<Post> allposts = new PostDAO().getPosts(offset, howmany);
 	
+		request.setAttribute("currentpage", currentpage);
 	    request.setAttribute("allposts", allposts);
 	    RequestDispatcher rd = getServletContext()
-	                               .getRequestDispatcher("/index.jsp");
+	                               .getRequestDispatcher("/posts.jsp");
 	    rd.forward(request, response);
 	}
 }

@@ -32,8 +32,8 @@
 									<br>
 									<div class="btn-group-vertical" role="group" aria-label="...">
 
-										<a href="./Profile">
-											<button type="button" class="btn btn-default">Profile</button>
+										<a href="./NewPost">
+											<button type="button" class="btn btn-default">New Post</button>
 										</a> <a href="./Logout">
 											<button type="button" class="btn btn-default">Logout</button>
 										</a>

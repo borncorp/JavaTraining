@@ -16,7 +16,7 @@ import com.sun.rowset.CachedRowSetImpl;
 
 public class UserDAO extends DBConnection{
 
-	public void createUser(User user) {
+	private void createUser(User user) {
 		// SQL STUFF
 		try {
 			// INSERT, UPDATE, or DELETE

@@ -7,6 +7,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
 import org.jsoup.Jsoup;
 import org.jsoup.safety.Whitelist;
 
@@ -43,12 +44,14 @@ public class NewPost extends HttpServlet {
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
+		String title = Jsoup.clean(request.getParameter("title"), Whitelist.none());
 		String content = Jsoup.clean(request.getParameter("simple-editor"), Whitelist.basicWithImages());
 		String username = request.getSession().getAttribute("isloggedin").toString();
 		
 		Post post = new Post();
 		post.setUsername(username);
 		post.setContent(content);
+		post.setTitle(title);
 		
 		new PostDAO().createPost(post);
 		response.sendRedirect("./Posts");
